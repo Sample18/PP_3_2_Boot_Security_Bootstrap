@@ -7,6 +7,7 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleServiceImp implements RoleService {
@@ -16,7 +17,7 @@ public class RoleServiceImp implements RoleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Role> findByNameIn(List<String> roleNames) {
+    public Set<Role> findByNameIn(List<String> roleNames) {
         return roleRepository.findByNameIn(roleNames);
     }
 

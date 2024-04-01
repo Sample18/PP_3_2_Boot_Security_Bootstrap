@@ -13,6 +13,10 @@ public interface UserService {
 
     void update(User user);
 
+    void create(User user, String[] selectedRoles);
+
+    void update(User user, String[] selectedRoles);
+
     User findById(int id);
 
     User findByUsername(String username);

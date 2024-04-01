@@ -1,17 +1,12 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 @Controller
@@ -43,10 +38,7 @@ public class AdminController {
 
     @PostMapping(value = "/edit")
     public String updateUser(@ModelAttribute("user") User user, @RequestParam(value = "selectedRoles", required = false) String[] selectedRoles) {
-        List<String> roleNames = Arrays.asList(selectedRoles);
-        List<Role> roles = roleService.findByNameIn(roleNames);
-        user.setRoles(roles);
-        userService.update(user);
+        userService.update(user, selectedRoles);
         return "redirect:/admin";
     }
 
@@ -59,11 +51,7 @@ public class AdminController {
 
     @PostMapping(value = "/new")
     public String createUser(@ModelAttribute("user") User user, @RequestParam(value = "selectedRoles", required = false) String[] selectedRoles) {
-        List<String> roleNames = Arrays.asList(selectedRoles);
-        List<Role> roles = roleService.findByNameIn(roleNames);
-        user.setRoles(roles);
-        user.setPassword(new BCryptPasswordEncoder(8).encode(user.getPassword()));
-        userService.create(user);
+        userService.create(user, selectedRoles);
         return "redirect:/admin";
     }
 

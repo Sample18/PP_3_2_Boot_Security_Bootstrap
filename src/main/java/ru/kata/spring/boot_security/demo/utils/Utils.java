@@ -35,7 +35,7 @@ public class Utils {
 
         User user = new User();
         user.setUsername("user");
-        user.setPassword(new BCryptPasswordEncoder(8).encode("user"));
+        user.setPassword("user");
         user.setName("test user");
         user.setSurname("test surname");
         user.setDepartment("IT");
@@ -46,7 +46,7 @@ public class Utils {
 
         User admin = new User();
         admin.setUsername("admin");
-        admin.setPassword(new BCryptPasswordEncoder(8).encode("admin"));
+        admin.setPassword("admin");
         admin.setName("test admin");
         admin.setSurname("test surname");
         admin.setDepartment("HR");

@@ -54,6 +54,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Surname</th>
                             <th scope="col">Salary</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -65,6 +66,7 @@
                             <td th:text="${user.getName()}">Name</td>
                             <td th:text="${user.getSurname()}">Surname</td>
                             <td th:text="${user.getSalary()}">Salary</td>
+                            <td th:text="${user.getRoles()}">Role</td>
                             <td>
                                 <button type="button" class="btn btn-info" th:id="'openModalBtn-' + ${user.id}"
                                         th:attr="data-target='#exampleModal-' + ${user.id}">
@@ -109,8 +111,8 @@
                                                                id="salary" th:value="${user.getSalary()}"/>
                                                     </div>
 
-                                                    <input name="username" th:hidden="hidden"/>
-                                                    <input name="password" th:hidden="hidden"/>
+                                                    <input name="username" th:value="${user.getUsername()}" th:hidden="hidden"/>
+                                                    <input name="password" th:value="${user.getPassword()}" th:hidden="hidden"/>
 
                                                     <div class="form-group d-flex flex-column justify-content-center w-50 mx-auto">
                                                         <label class="text-center font-weight-bold"
@@ -181,7 +183,7 @@
                                                                    for="exampleFormControlSelect3">Roles:</label>
                                                             <select multiple class="form-control"
                                                                     id="exampleFormControlSelect3" name="selectedRoles">
-                                                                <option th:each="role : ${roles}"
+                                                                <option th:each="role : ${user.getRoles()}"
                                                                         th:value="${role.getName()}"
                                                                         th:text="${role.getName()}"></option>
                                                             </select>
